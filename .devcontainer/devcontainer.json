@@ -1,0 +1,27 @@
+{
+  "name": "The Middleman Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
+  
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+
+  "forwardPorts": [3000],
+
+  "containerEnv": {
+    "NEXT_PUBLIC_SUPABASE_URL": "${localEnv:https://uwigyojtiudefnwjezhm.supabase.co}",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "${localEnv:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV3aWd5b2p0aXVkZWZud2plemhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNjY5MjcsImV4cCI6MjA5NDc0MjkyN30.X_GfdlRb-aPMrNPWan--iE3hM-vwev_Zgi1YtXYxihA}"
+  },
+
+  "postCreateCommand": "npm install"
+}
