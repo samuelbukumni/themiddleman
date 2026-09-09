@@ -1,5 +1,7 @@
 import Link from "next/link";
 import HomeFAQ from "@/components/HomeFAQ";
+import FadeIn from "@/components/motion/FadeIn";
+import StaggerChildren from "@/components/motion/StaggerChildren";
 
 const TESTIMONIALS = [
   {
@@ -159,7 +161,8 @@ export default function Home() {
 
           <div className="relative mt-14 grid border-y border-white/10 lg:grid-cols-3 lg:divide-x lg:divide-white/10">
             <div aria-hidden="true" className="absolute left-[16%] right-[16%] top-0 hidden h-px bg-gradient-to-r from-[#f26419]/60 via-[#f26419]/20 to-transparent lg:block" />
-            {[
+            <StaggerChildren baseDelay={200} staggerDelay={120} direction="up">
+              {[
               {
                 step: "01",
                 title: "DISCOVER",
@@ -178,7 +181,7 @@ export default function Home() {
                 description: "Review what you receive. Approve the delivery and release the payment.",
                 body: "Review the delivery. Payment releases to the seller only after you confirm everything is as promised.",
               },
-            ].map((item, index) => (
+              ].map((item, index) => (
               <div key={item.step} className="group relative min-h-[15rem] border-t border-white/10 px-1 py-9 transition-colors duration-300 first:border-t-0 hover:bg-white/[.025] sm:px-7 lg:border-t-0 lg:px-9">
                 <span className="font-mono text-5xl leading-none text-[#f26419] transition-transform duration-300 group-hover:translate-x-1">
                   {item.step}
@@ -198,7 +201,8 @@ export default function Home() {
                   {index === 2 && <span className="flex items-center gap-2"><span className="grid h-7 w-7 place-items-center rounded-full border border-white/20 text-[#f7a57a] transition-all duration-300 group-hover:border-[#f26419] group-hover:bg-[#f26419] group-hover:text-[#171717]">✓</span>READY TO RELEASE</span>}
                 </div>
               </div>
-            ))}
+              ))}
+            </StaggerChildren>
           </div>
         </div>
       </section>
@@ -224,12 +228,13 @@ export default function Home() {
           </div>
 
           <div className="mt-8 grid gap-x-6 gap-y-12 border-t border-[#ded6ca] pt-8 sm:grid-cols-2 lg:grid-cols-4">
-            {[
+            <StaggerChildren baseDelay={100} staggerDelay={100} direction="up">
+              {[
               { title: 'Modern SaaS Landing Page Kit', category: 'WEB & SOFTWARE', seller: 'Tomi Adeyemi', price: '₦42,000', accent: 'from-[#201b32] via-[#4c3576] to-[#f26419]' },
               { title: 'Next.js Business Dashboard', category: 'WEB & SOFTWARE', seller: 'Ifeanyi Okoro', price: '₦85,000', accent: 'from-[#172937] via-[#275b75] to-[#8ed1d0]' },
               { title: 'AI Content Workflow Template', category: 'TEMPLATES', seller: 'Zainab Bello', price: '₦18,500', accent: 'from-[#3b2635] via-[#834667] to-[#f0a25d]' },
               { title: 'Premium Brand Identity Kit', category: 'DESIGN', seller: 'Chisom Umeh', price: '₦65,000', accent: 'from-[#261f1b] via-[#8d5531] to-[#e9c69b]' },
-            ].map((product, index) => (
+              ].map((product, index) => (
               <Link key={product.title} href="/marketplace" className="group block min-w-0">
                 <div className={`relative aspect-[4/3] overflow-hidden rounded-xl bg-gradient-to-br ${product.accent} shadow-[0_10px_24px_rgba(48,38,27,.12)] transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_18px_32px_rgba(48,38,27,.18)]`}>
                   {index === 0 && <><div className="absolute left-[12%] top-[16%] h-[66%] w-[76%] rounded-md bg-[#f7f3ec]/90 p-3 shadow-xl transition-transform duration-500 group-hover:scale-[1.03]"><div className="h-2 w-12 rounded-full bg-[#1c1b18]" /><div className="mt-3 grid grid-cols-3 gap-1"><span className="h-8 rounded bg-[#f26419]" /><span className="h-8 rounded bg-[#342953]" /><span className="h-8 rounded bg-[#d6ccc0]" /></div><div className="mt-2 h-1.5 w-3/4 rounded-full bg-[#b9afa2]" /></div><span className="absolute bottom-3 left-3 text-[9px] font-semibold tracking-[.14em] text-white/75">LANDING PAGE</span></>}
@@ -244,7 +249,8 @@ export default function Home() {
                   <div className="mt-4 flex items-center justify-between text-[10px] font-semibold tracking-[.12em] text-[#6f6a63]"><span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#f26419]" />PAYMENT PROTECTED</span><span className="translate-x-[-4px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">VIEW PRODUCT →</span></div>
                 </div>
               </Link>
-            ))}
+              ))}
+            </StaggerChildren>
           </div>
 
           <div className="mt-14 flex justify-center border-t border-[#ded6ca] pt-8">
@@ -287,7 +293,8 @@ export default function Home() {
       </section>
 
       {/* TRUST / ESCROW — ticket motif */}
-      <section id="trust" className="border-t border-[#ded6ca] bg-[#f7f3ec] text-[#1c1b18]">
+      <FadeIn direction="up" delay={100} duration={800}>
+        <section id="trust" className="border-t border-[#ded6ca] bg-[#f7f3ec] text-[#1c1b18]">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2">
           <div>
             <p className="mb-3 text-sm font-medium tracking-[0.2em] text-[#c65318]">
@@ -350,7 +357,8 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </section>
+        </section>
+      </FadeIn>
 
       {/* TESTIMONIALS */}
       <section className="border-t border-white/10 bg-[#0f0f0f]">
