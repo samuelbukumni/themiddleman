@@ -881,17 +881,54 @@ body {
   }
 }
 
-/* Flip card: front = sign in, back = sign up. Toggling .is-flipped on the
+/* Flip card: front = sign up, back = sign in. Toggling .is-flipped on the
    inner element rotates the whole card 180deg around the Y axis so the
    back face swings into view — the "switches to the other side" effect. */
-.flip-card { perspective: 1800px; }
+.flip-card { perspective: 1800px; transition: max-width .8s cubic-bezier(.645,.045,.355,1); }
 .flip-card-inner { position: relative; width: 100%; transition: transform .8s cubic-bezier(.645,.045,.355,1); transform-style: preserve-3d; }
 .flip-card-inner.is-flipped { transform: rotateY(180deg); }
-.flip-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-.flip-face-back { position: absolute; inset: 0; transform: rotateY(180deg); }
+.flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: opacity .4s ease, visibility .4s ease;
+}
+
+.flip-face-front {
+  position: relative;
+  width: 100%;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.flip-face-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.flip-card-inner.is-flipped .flip-face-front {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.flip-card-inner.is-flipped .flip-face-back {
+  position: relative;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* Applied only on first paint so the correct starting face (based on the
    person's last visit) doesn't visibly animate in from the other side. */
-.flip-card-inner.no-anim { transition: none; }
+.flip-card-inner.no-anim,
+.flip-card-inner.no-anim .flip-face { transition: none !important; }
 
 /* Native <select> popups otherwise render with the OS default (usually
    black text on white), which reads as broken against our dark cards. */

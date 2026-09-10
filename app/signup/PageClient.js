@@ -206,7 +206,7 @@ function AuthPageInner() {
         <div className={`flip-card-inner ${flipped ? 'is-flipped' : ''} ${skipInitialAnim ? 'no-anim' : ''}`}>
 
           {/* FRONT — Sign up */}
-          <div className="flip-face auth-glass-card p-8">
+          <div className="flip-face flip-face-front auth-glass-card p-8">
             <Link href="/" className="font-display text-lg font-bold tracking-tight">
               <span className="mr-2 inline-block h-2 w-2 rounded-full bg-ember shadow-[0_0_0_6px_rgba(242,100,25,.14)]" />
               The Middleman
