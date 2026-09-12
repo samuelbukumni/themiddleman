@@ -139,6 +139,7 @@ function AuthPageInner() {
   const [phone, setPhone] = useState('');
   const [state, setState] = useState('');
   const [password, setPassword] = useState('');
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [signupLoading, setSignupLoading] = useState(false);
   const [signupError, setSignupError] = useState('');
 
@@ -154,7 +155,8 @@ function AuthPageInner() {
     /^\S+@\S+\.\S+$/.test(email) &&
     phone.trim().length >= 7 &&
     state.length > 0 &&
-    passwordIsValid(password);
+    passwordIsValid(password) &&
+    agreedToTerms;
 
   async function handleSignup(e) {
     e.preventDefault();
@@ -167,17 +169,26 @@ function AuthPageInner() {
 
     setSignupLoading(true);
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: { data: { full_name: fullName, phone, state } },
     });
 
     if (error) {
-      setSignupError(error?.message || error?.error_description || JSON.stringify(error) || 'Sign up failed. Please try again.');
+      // Bulletproof error extraction for Supabase
+      const errorMsg =
+        error.message ||
+        error.error_description ||
+        error.details ||
+        error.hint ||
+        (typeof error === 'string' ? error : 'Sign up failed. Please check your details and try again.');
+
+      setSignupError(errorMsg);
       setSignupLoading(false);
       return;
     }
+
     router.push('/onboarding/role');
   }
 
@@ -192,10 +203,12 @@ function AuthPageInner() {
     });
 
     if (error) {
-      setLoginError(error.message);
+      const errorMsg = error.message || error.error_description || 'Invalid email or password.';
+      setLoginError(errorMsg);
       setLoginLoading(false);
       return;
     }
+
     router.push('/marketplace');
   }
 
@@ -232,9 +245,29 @@ function AuthPageInner() {
                 </select>
               </Field>
               <Field icon={<LockIcon />} label="Password">
-                <input type="password" placeholder="9–15 characters" value={password} onChange={(e) => setPassword(e.target.value)} minLength={9} maxLength={15} required className="field-input" />
+                <input type="password" placeholder="9–15 characters" value={password} onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (signupError) setSignupError('');
+                }} minLength={9} maxLength={15} required className="field-input" />
               </Field>
               <PasswordChecklist value={password} />
+              {/* Consent checkbox — REQUIRED */}
+              <div className="flex items-start gap-3 rounded-xl border border-line bg-ink/40 p-4">
+                <input
+                  id="consent-terms"
+                  type="checkbox"
+                  checked={agreedToTerms}
+                  onChange={(e) => setAgreedToTerms(e.target.checked)}
+                  className="mt-0.5 accent-ember"
+                />
+                <label htmlFor="consent-terms" className="text-xs cursor-pointer text-slate leading-relaxed">
+                  I have read and agree to The Middleman&apos;s{' '}
+                  <Link href="/legal/terms" className="text-ember underline hover:text-ember/80">Terms of Service</Link>,{' '}
+                  <Link href="/legal/privacy" className="text-ember underline hover:text-ember/80">Privacy Policy</Link>, and{' '}
+                  <Link href="/legal/refunds" className="text-ember underline hover:text-ember/80">Refund Policy</Link>.
+                  I understand that all transactions are escrow-protected.
+                </label>
+              </div>
               {signupError && <p className="auth-error">{signupError}</p>}
               <button
                 className="auth-button disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-ember shadow-lg shadow-ember/20"

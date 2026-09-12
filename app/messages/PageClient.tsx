@@ -267,23 +267,27 @@ function MessagesPageInner() {
     };
   }, [activeId, userId]);
 
-  // Mark the active conversation as read when the user opens it so the
-  // unread badge in the header stays in sync with what they have seen.
+  // Mark conversation as read when the user opens it
   useEffect(() => {
-    if (!activeId || !userId || !activeConversation) return;
+    async function markAsRead() {
+      if (!activeId || !userId) return;
 
-    const isBuyer = activeConversation.buyer_id === userId;
-    const column = isBuyer ? "buyer_last_read_at" : "seller_last_read_at";
+      const conversation = conversations.find((c) => c.id === activeId);
+      if (!conversation) return;
 
-    supabase
-      .from("conversations")
-      .update({ [column]: new Date().toISOString() })
-      .eq("id", activeId)
-      .then(({ error }) => {
-        if (error) console.error("Failed to mark conversation as read:", error.message);
-        else window.dispatchEvent(new Event("messages:read-updated"));
+      const isBuyer = conversation.buyer_id === userId;
+      const role = isBuyer ? "buyer" : "seller";
+
+      await supabase.rpc("mark_conversation_read", {
+        p_conversation_id: activeId,
+        p_role: role,
       });
-  }, [activeId, userId, activeConversation]);
+
+      window.dispatchEvent(new Event("messages:read-updated"));
+    }
+
+    markAsRead();
+  }, [activeId, userId, conversations]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });

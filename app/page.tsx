@@ -1,5 +1,6 @@
 import Link from "next/link";
 import HomeFAQ from "@/components/HomeFAQ";
+import HomeFeed from "@/components/marketplace/HomeFeed";
 import FadeIn from "@/components/motion/FadeIn";
 import StaggerChildren from "@/components/motion/StaggerChildren";
 
@@ -144,6 +145,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <HomeFeed />
 
       {/* HOW IT WORKS — receipt/ticket motif */}
       <section id="how-it-works" className="relative overflow-hidden bg-[#171717]">
