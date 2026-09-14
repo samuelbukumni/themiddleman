@@ -65,7 +65,8 @@ export default function MarketplacePage() {
       ? (initialCategory as GigCategory)
       : "all"
   );
-  const [query, setQuery] = useState("");
+  const initialQuery = searchParams.get("q") ?? "";
+  const [query, setQuery] = useState(initialQuery);
 
   useEffect(() => {
     let cancelled = false;

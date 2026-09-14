@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
@@ -66,6 +66,22 @@ type ConversationRow = {
 
 export default function MobileTabBar() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  // Mobile app shell: logged-in users skip the marketing landing page.
+  useEffect(() => {
+    if (pathname !== "/") return;
+    if (typeof window === "undefined") return;
+    if (!window.matchMedia("(max-width: 767px)").matches) return;
+    let cancelled = false;
+    supabase.auth.getUser().then(({ data }) => {
+      if (!cancelled && data.user) router.replace("/marketplace");
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [pathname, router]);
+
   const [unread, setUnread] = useState(0);
 
   useEffect(() => {
@@ -113,8 +129,8 @@ export default function MobileTabBar() {
     | { href: string; label: string; icon: React.ReactNode; badge?: number }
     | null
   > = [
-    { href: "/", label: "Home", icon: <IconHome /> },
-    { href: "/marketplace", label: "Browse", icon: <IconBrowse /> },
+    { href: "/marketplace", label: "Home", icon: <IconHome /> },
+    { href: "/browse", label: "Browse", icon: <IconBrowse /> },
     null,
     { href: "/messages", label: "Messages", icon: <IconMessages />, badge: unread },
     { href: "/profile", label: "Profile", icon: <IconProfile /> },
@@ -146,7 +162,7 @@ export default function MobileTabBar() {
                   </div>
                 );
               }
-              const active = tab.href === "/" ? pathname === "/" : pathname.startsWith(tab.href);
+              const active = pathname === "/" ? tab.href === "/marketplace" : pathname.startsWith(tab.href);
               return (
                 <Link
                   key={tab.href}
