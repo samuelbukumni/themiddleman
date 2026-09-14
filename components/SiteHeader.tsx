@@ -94,9 +94,9 @@ export default function SiteHeader({ isSeller = false }: { isSeller?: boolean })
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4 lg:py-5">
         <Logo className="text-lg" markClass="h-7 w-7" />
 
-        {/* Desktop nav — lg and above */}
-        <div className="hidden items-center gap-2 text-sm text-slate lg:flex">
-          <nav className="flex items-center gap-2">
+        {/* Desktop nav — md and above */}
+        <div className="hidden md:flex items-center gap-2 text-sm text-slate">
+          <nav className="hidden md:flex items-center gap-2">
             <Link href="/marketplace" className={desktopLink}>Marketplace</Link>
             <Link href="/orders" className={desktopLink}>My Orders</Link>
             {isSeller && <Link href="/gigs/mine" className={desktopLink}>My Products</Link>}
@@ -111,14 +111,14 @@ export default function SiteHeader({ isSeller = false }: { isSeller?: boolean })
           </nav>
           <button
             onClick={handleSignOut}
-            className="rounded-full border border-line bg-white px-4 py-2 text-xs font-semibold text-slate shadow-sm transition-colors hover:border-ember/40 hover:text-ember"
+            className="hidden md:inline-flex rounded-full border border-line bg-white px-4 py-2 text-xs font-semibold text-slate shadow-sm transition-colors hover:border-ember/40 hover:text-ember"
           >
             Sign out
           </button>
         </div>
 
-        {/* Mobile actions — below lg */}
-        <div className="flex items-center gap-1 lg:hidden">
+        {/* Mobile actions — below md */}
+        <div className="flex items-center gap-1 md:hidden">
           <Link href="/messages" className="rounded-full px-3 py-2 text-sm text-slate transition-colors hover:bg-ember/8 hover:text-bone">
             <span className="inline-flex items-center gap-2">
               Messages
@@ -147,7 +147,7 @@ export default function SiteHeader({ isSeller = false }: { isSeller?: boolean })
 
       {/* Mobile menu sheet */}
       {menuOpen && (
-        <div className="border-t border-line bg-white/95 backdrop-blur-xl lg:hidden">
+        <div className="border-t border-line bg-white/95 backdrop-blur-xl md:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col px-4 py-3 sm:px-6">
             <Link href="/marketplace" onClick={() => setMenuOpen(false)} className={mobileLink}>Marketplace</Link>
             <Link href="/orders" onClick={() => setMenuOpen(false)} className={mobileLink}>My Orders</Link>
