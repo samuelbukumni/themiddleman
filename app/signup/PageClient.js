@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import Link from 'next/link';
 import ShaderBackground from '@/components/ShaderBackground';
+import Logo from '@/components/Logo';
 
 const NIGERIAN_STATES = [
   'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno',
@@ -220,10 +221,7 @@ function AuthPageInner() {
 
           {/* FRONT — Sign up */}
           <div className="flip-face flip-face-front auth-glass-card p-8">
-            <Link href="/" className="font-display text-lg font-bold tracking-tight">
-              <span className="mr-2 inline-block h-2 w-2 rounded-full bg-ember shadow-[0_0_0_6px_rgba(242,100,25,.14)]" />
-              The Middleman
-            </Link>
+            <Logo variant="vertical" className="mx-auto" />
             <p className="mt-8 text-xs font-medium tracking-[.2em] text-ember">GET STARTED</p>
             <h1 className="mt-2 font-display text-3xl font-bold tracking-tight">Create your account</h1>
             <p className="mt-2 text-sm text-slate">Hire with confidence or start offering your skills.</p>

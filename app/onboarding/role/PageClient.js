@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import ShaderBackground from '@/components/ShaderBackground';
+import Logo from '@/components/Logo';
 
 export default function RoleSelectionPage() {
   const router = useRouter();
@@ -68,10 +69,7 @@ export default function RoleSelectionPage() {
       <ShaderBackground variant="silk" />
       <section className="relative z-10 w-full max-w-4xl">
         <div className="mb-8 flex items-center justify-between">
-          <Link href="/" className="font-display text-lg font-bold tracking-tight">
-            <span className="mr-2 inline-block h-2 w-2 rounded-full bg-ember shadow-[0_0_0_6px_rgba(242,100,25,.14)]" />
-            The Middleman
-          </Link>
+          <Logo variant="vertical" />
           <span className="rounded-full border border-ember/20 bg-white/70 px-3 py-1 text-xs font-medium text-slate shadow-sm">Step 1 of 2</span>
         </div>
 

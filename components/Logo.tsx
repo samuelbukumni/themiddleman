@@ -1,13 +1,9 @@
 import Link from "next/link";
 
+type LogoVariant = "responsive" | "horizontal" | "vertical" | "symbol" | "dark" | "mono";
+
 export function LogoMark({ className = "h-7 w-7" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 32 32" fill="none" className={className} aria-hidden="true">
-      <path d="M10 6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M22 6h4a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-      <rect x="13.5" y="4" width="5" height="24" rx="2.5" fill="#F26419" />
-    </svg>
-  );
+  return <img src="/brand/middleman-symbol.svg" alt="The Middleman" className={className} />;
 }
 
 export default function Logo({
@@ -15,16 +11,35 @@ export default function Logo({
   className = "",
   markClass = "h-6 w-6",
   textClass = "text-lg",
+  variant = "responsive",
 }: {
   href?: string;
   className?: string;
   markClass?: string;
   textClass?: string;
+  variant?: LogoVariant;
 }) {
+  const imageClass = variant === "responsive" ? "logo-responsive" : "logo-fixed";
+  const fixedSource = variant === "horizontal"
+    ? "/brand/middleman-logo-horizontal.svg"
+    : variant === "vertical"
+      ? "/brand/middleman-logo-vertical.svg"
+      : variant === "dark"
+        ? "/brand/middleman-logo-dark.svg"
+        : variant === "mono"
+          ? "/brand/middleman-logo-mono.svg"
+      : "/brand/middleman-symbol.svg";
+
   return (
-    <Link href={href} className={`flex items-center gap-2.5 ${className}`}>
-      <LogoMark className={markClass} />
-      <span className={`font-display font-bold tracking-tight ${textClass}`}>The Middleman</span>
+    <Link href={href} aria-label="The Middleman homepage" className={`flex items-center gap-2.5 ${className}`}>
+      {variant === "responsive" ? (
+        <picture>
+          <source media="(max-width: 767px)" srcSet="/brand/middleman-symbol.svg" />
+          <img src="/brand/middleman-logo-horizontal.svg" alt="The Middleman" className={`${imageClass} object-contain`} />
+        </picture>
+      ) : (
+        <img src={fixedSource} alt="The Middleman" className={`${imageClass} object-contain`} />
+      )}
     </Link>
   );
 }

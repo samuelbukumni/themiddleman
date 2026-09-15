@@ -1,15 +1,12 @@
 import Link from "next/link";
-import { LogoMark } from "@/components/Logo";
+import Logo from "@/components/Logo";
 
 export const metadata = { title: "Page Not Found - The Middleman" };
 
 export default function NotFound() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-ink px-6 text-bone">
-      <Link href="/" className="mb-10 flex items-center gap-2.5 text-bone">
-        <LogoMark className="h-7 w-7" />
-        <span className="font-display text-lg font-bold tracking-tight">The Middleman</span>
-      </Link>
+      <Logo variant="dark" className="mb-10" />
 
       <div className="relative w-full max-w-md rounded-2xl border border-line bg-paper p-8 text-center shadow-[0_24px_70px_rgba(48,38,27,0.12)]">
         <div className="absolute -left-2 top-1/2 h-4 w-4 -translate-y-1/2 rounded-full border border-line bg-ink" />

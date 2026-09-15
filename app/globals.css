@@ -33,6 +33,14 @@ body {
   font-family: var(--font-body), sans-serif;
 }
 
+.logo-responsive { display: block; width: 9rem; height: 2.5rem; }
+.logo-fixed { display: block; width: 9rem; height: 2.5rem; }
+.logo-fixed[src*="symbol"] { width: 2rem; height: 2rem; }
+.logo-fixed[src*="vertical"] { width: 6rem; height: 6rem; }
+@media (max-width: 767px) {
+  .logo-responsive { width: 2rem; height: 2rem; }
+}
+
 /* ============================================================
    ANIMATION SYSTEM - The Middleman
    Ticket/receipt tactile feel. Premium, physical, deliberate.

@@ -3,6 +3,7 @@ import HomeFAQ from "@/components/HomeFAQ";
 import HomeFeed from "@/components/marketplace/HomeFeed";
 import FadeIn from "@/components/motion/FadeIn";
 import StaggerChildren from "@/components/motion/StaggerChildren";
+import Logo from "@/components/Logo";
 
 const TESTIMONIALS = [
   {
@@ -34,15 +35,7 @@ export default function Home() {
       {/* NAV */}
       <header className="sticky top-0 z-30 border-b border-[#e8e0d5] bg-[#f7f3ec]/90 text-[#1c1b18] backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#f26419] shadow-[0_0_0_6px_rgba(242,100,25,.15)]" />
-            <div>
-              <span className="font-display font-bold text-lg tracking-tight block text-[#1c1b18]">
-                The Middleman
-              </span>
-              <span className="hidden sm:block text-[11px] uppercase tracking-[.18em] text-[#6f6a63]">Escrow-backed digital marketplace</span>
-            </div>
-          </div>
+          <Logo variant="vertical" className="shrink-0" />
           <nav className="hidden sm:flex items-center gap-2 text-sm text-[#6f6a63]">
             <a href="#how-it-works" className="relative px-3 py-2 transition-colors hover:text-[#1c1b18] after:absolute after:bottom-1 after:left-3 after:h-px after:w-0 after:bg-[#f26419] after:transition-all hover:after:w-[calc(100%-1.5rem)]">
               How it works

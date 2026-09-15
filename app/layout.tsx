@@ -4,6 +4,12 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "The Middleman",
   description: "Verified digital products and code, escrow-backed, Nigeria-wide.",
+  icons: {
+    icon: [
+      { url: "/brand/favicon.svg", type: "image/svg+xml" },
+      { url: "/brand/app-icon.png", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({
