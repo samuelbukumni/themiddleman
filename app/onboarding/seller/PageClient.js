@@ -137,27 +137,27 @@ export default function SellerOnboardingPage() {
 
   if (!pageReady) {
     return (
-      <main className="auth-shell">
+      <main className="auth-shell text-bone">
         <div className="flex min-h-[50vh] items-center justify-center text-sm text-slate">Checking your access…</div>
       </main>
     );
   }
 
   return (
-    <main className="auth-shell">
+    <main className="auth-shell text-bone">
       <section className="w-full max-w-4xl">
         <div className="mb-8 flex items-center justify-between">
-          <Link href="/" className="font-display text-lg font-bold tracking-tight">
+          <Link href="/" className="font-display text-lg font-bold tracking-tight text-bone">
             <span className="mr-2 inline-block h-2 w-2 rounded-full bg-ember shadow-[0_0_0_6px_rgba(242,100,25,.14)]" />
             The Middleman
           </Link>
           <span className="rounded-full border border-ember/30 bg-ember/10 px-3 py-1 text-xs font-medium text-ember shadow-[0_0_0_1px_rgba(242,100,25,.08)]">Step 2 of 2</span>
         </div>
 
-        <form onSubmit={handleSubmit} className="overflow-hidden rounded-3xl border border-line bg-paper shadow-2xl shadow-black/25">
+        <form onSubmit={handleSubmit} className="overflow-hidden rounded-3xl border border-line bg-paper text-bone shadow-2xl shadow-black/25">
           <header className="border-b border-line bg-[radial-gradient(circle_at_top_right,_rgba(242,100,25,.2),_transparent_42%),linear-gradient(180deg,rgba(23,23,23,.92),rgba(17,17,17,1))] px-6 py-10 sm:px-10">
             <p className="text-xs font-semibold tracking-[.2em] text-ember">SELLER VERIFICATION</p>
-            <h1 className="mt-3 font-display text-3xl font-bold sm:text-5xl">Show buyers what you deliver.</h1>
+            <h1 className="mt-3 font-display text-3xl font-bold text-bone sm:text-5xl">Show buyers what you deliver.</h1>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate sm:text-base">
               Complete your creator profile and securely submit one verification document. A member of our team
               reviews every application by hand before you can publish products.
@@ -173,35 +173,35 @@ export default function SellerOnboardingPage() {
               <section>
                 <p className="text-xs font-bold tracking-[.16em] text-ember">01 · CREATOR PROFILE</p>
                 <div className="mt-4 grid gap-4">
-                  <label className="text-sm font-medium">
+                  <label className="text-sm font-medium text-bone">
                     Creator or business name
                     <input
                       required
                       value={displayName}
                       onChange={(event) => setDisplayName(event.target.value)}
-                      className="auth-input mt-2"
+                      className="auth-input mt-2 text-bone"
                       placeholder="e.g. PixelForge Studio"
                     />
                   </label>
-                  <label className="text-sm font-medium">
+                  <label className="text-sm font-medium text-bone">
                     What do you offer?
                     <textarea
                       required
                       minLength={30}
                       value={bio}
                       onChange={(event) => setBio(event.target.value)}
-                      className="auth-input mt-2 min-h-28"
+                      className="auth-input mt-2 min-h-28 text-bone"
                       placeholder="Describe the work you deliver and who it helps."
                     />
                   </label>
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <label className="text-sm font-medium">
+                    <label className="text-sm font-medium text-bone">
                       Years of experience
                       <select
                         required
                         value={experience}
                         onChange={(event) => setExperience(event.target.value)}
-                        className="auth-input mt-2"
+                        className="auth-input mt-2 text-bone"
                       >
                         <option value="" disabled>Select a range</option>
                         {EXPERIENCE_RANGES.map((range) => (
@@ -209,31 +209,31 @@ export default function SellerOnboardingPage() {
                         ))}
                       </select>
                     </label>
-                    <label className="text-sm font-medium">
+                    <label className="text-sm font-medium text-bone">
                       LinkedIn or professional profile
                       <input
                         value={linkedin}
                         onChange={(event) => setLinkedin(event.target.value)}
-                        className="auth-input mt-2"
+                        className="auth-input mt-2 text-bone"
                         placeholder="https://linkedin.com/in/..."
                       />
                     </label>
                   </div>
-                  <label className="text-sm font-medium">
+                  <label className="text-sm font-medium text-bone">
                     Tools or technologies
                     <input
                       value={skills}
                       onChange={(event) => setSkills(event.target.value)}
-                      className="auth-input mt-2"
+                      className="auth-input mt-2 text-bone"
                       placeholder="Next.js, Figma, n8n, OpenAI"
                     />
                   </label>
-                  <label className="text-sm font-medium">
+                  <label className="text-sm font-medium text-bone">
                     Portfolio links
                     <input
                       value={portfolio}
                       onChange={(event) => setPortfolio(event.target.value)}
-                      className="auth-input mt-2"
+                      className="auth-input mt-2 text-bone"
                       placeholder="https://yourportfolio.com, https://github.com/..."
                     />
                   </label>
@@ -270,13 +270,13 @@ export default function SellerOnboardingPage() {
                     Review this section carefully. Your submission cannot continue until you confirm the box below and upload a valid document.
                   </p>
                 </div>
-                <label className="text-sm font-medium mt-4 block">
+                <label className="text-sm font-medium text-bone mt-4 block">
                   Document type
                   <select
                     required
                     value={idDocumentType}
                     onChange={(event) => setIdDocumentType(event.target.value)}
-                    className="auth-input mt-2"
+                    className="auth-input mt-2 text-bone"
                   >
                     <option value="" disabled>Select a document type</option>
                     {ID_DOCUMENT_TYPES.map((type) => (

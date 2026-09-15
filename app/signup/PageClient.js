@@ -151,6 +151,29 @@ function AuthPageInner() {
   const [loginError, setLoginError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
+  const [draftLoaded, setDraftLoaded] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const saved = JSON.parse(window.localStorage.getItem('mm_signup_draft') || 'null');
+      if (saved) {
+        setFullName(saved.fullName || '');
+        setEmail(saved.email || '');
+        setPhone(saved.phone || '');
+        setState(saved.state || '');
+        setPassword(saved.password || '');
+        if (typeof setAgreedToTerms === 'function') setAgreedToTerms(!!saved.agreedToTerms);
+      }
+    } catch (e) { /* ignore corrupt storage */ }
+    setDraftLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !draftLoaded) return;
+    window.localStorage.setItem('mm_signup_draft', JSON.stringify({ fullName, email, phone, state, password, agreedToTerms }));
+  }, [fullName, email, phone, state, password, agreedToTerms, draftLoaded]);
+
   const signupReady =
     fullName.trim().length > 0 &&
     /^\S+@\S+\.\S+$/.test(email) &&
@@ -190,6 +213,7 @@ function AuthPageInner() {
       return;
     }
 
+    window.localStorage.removeItem('mm_signup_draft');
     router.push('/onboarding/role');
   }
 
