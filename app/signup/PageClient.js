@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import Link from 'next/link';
+import Image from 'next/image';
 import ShaderBackground from '@/components/ShaderBackground';
 import Logo from '@/components/Logo';
 
@@ -322,9 +323,11 @@ function AuthPageInner() {
 
               <div className="auth-handshake-container animate-fade-in">
                 <div className="auth-handshake-overlay" />
-                <img
+                <Image
                   src="/handshake.jpg"
                   alt="Two professionals shaking hands"
+                  fill
+                  sizes="(max-width: 1024px) 0px, 440px"
                   className="auth-handshake-image"
                 />
               </div>

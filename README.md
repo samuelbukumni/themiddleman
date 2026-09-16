@@ -1,65 +1,169 @@
 # The Middleman
 
-**A Nigeria-wide marketplace for buying and selling verified digital products and code.**
+The Middleman is a Nigeria-first marketplace for buying and selling digital
+products and digital services with clearer seller identity, Naira pricing, and
+protected transaction flows.
 
-Digital products, code, templates, creative assets, and AI-assisted products — all in one place, with escrow-backed payments as the core trust layer for the Nigerian market.
+The product is built around one promise: buyers should be able to discover
+something useful and pay without blindly trusting a stranger, while legitimate
+sellers should be able to prove who they are and get paid for completed work.
 
-🔗 [themiddleman.com.ng](https://themiddleman.com.ng)
+[Visit themiddleman.com.ng](https://themiddleman.com.ng)
 
----
+## Repository status
 
-## What this is
+This repository contains the current Next.js application under active MVP
+development. It is being cleaned and prepared for migration to the official
+organization repository,
+[`themiddleman-ng/themiddleman-web`](https://github.com/themiddleman-ng/themiddleman-web),
+which is connected to the public website.
 
-The Middleman exists to make buying and selling digital products in Nigeria safer — with verification that works locally, payments that do not disappear into cross-border friction, and pricing in Naira from the start.
+The application is **not production-ready yet**. Do not point the live domain at
+this code until the database schema, payment flow, environment variables, and
+deployment build have been verified.
 
-Escrow and verified trust are the differentiators, not just another generic product marketplace.
+## Product scope
 
-## Current status
+The active product direction is a Nigeria-wide digital marketplace for:
 
-Actively in development — pre-launch, building toward MVP.
+- Software and code
+- Templates and design assets
+- Digital creative work
+- Digital services
+- AI-assisted products and services, clearly labelled
 
-## Roadmap
+The earlier OAU-focused physical-goods concept is retired and is not part of
+the current product.
 
-The project is organized into six phases:
+## What exists in the codebase
 
-1. **Foundation / MVP** — core marketplace, listings, seller profiles, basic auth
-2. **Product listings & AI-assisted products** — sellers publish digital products; a dedicated category clearly labels AI-assisted products
-3. **Payments & Escrow** — Paystack integration, escrow-held payments, milestone releases
-4. **Trust, Reviews & Disputes** — verified reviews, dispute resolution flow
-5. **Growth & Discovery** — search, recommendations, category expansion
-6. **Scale Infrastructure** — as usage grows, revisit infra choices (still free-tier-first, no surprise billing)
+- Public homepage, marketplace feed, listing details, and informational pages
+- Supabase email/password authentication
+- Buyer and seller role selection on one account
+- Seller onboarding, identity-document upload, and verification states
+- Seller listing creation and management
+- Buyer orders and delivery/approval states
+- Paystack payment initialization/verification integration points
+- Buyer-seller conversations and messages
+- Reviews, ratings, listing reports, and dispute interfaces
+- Responsive navigation and a dedicated mobile tab bar
+- Legal-policy routes for terms, privacy, refunds, and marketplace disclaimers
 
-> Note: an earlier version of this project was scoped as a hyperlocal OAU-campus goods marketplace. That model is fully deprecated. The current and only active direction is the Nigeria-wide digital product marketplace described above.
+Some of these flows still depend on the live Supabase schema and configured
+third-party credentials. Presence in the interface does not mean a flow has
+completed production or legal review.
 
-## Tech stack
+## Technology
 
-- **Frontend:** Next.js, Tailwind CSS
-- **Backend / DB:** Supabase (schema, RLS, Edge Functions)
-- **Payments:** Paystack
-- **Hosting:** Vercel
-- **DNS / SSL:** Cloudflare
+- [Next.js](https://nextjs.org/) 15 with the App Router
+- React 18
+- TypeScript and JavaScript
+- Tailwind CSS 4
+- Supabase Auth, Postgres, Storage, and Row Level Security
+- Paystack integration points for Naira payments
+- Vercel hosting and Cloudflare-managed DNS
+- pnpm for package management
 
-## Brand
+## Local development
 
-- **Colors:** Ink `#0D0D0D` (background), Ember `#F26419` (accent), Bone `#F5F2EC` (primary text), Slate `#8C8C8C` (secondary text), Paper `#171717` (card background)
-- **Type:** Syne (display/headings), DM Sans (body), DM Mono (prices/numerals)
+### Requirements
 
-## Legal
+- Node.js 22 (see `.nvmrc`)
+- Corepack with pnpm enabled
+- A Supabase project for authenticated and database-backed flows
 
-Privacy Policy, Terms of Service, Marketplace Disclaimer, Refund & Dispute Policy, and Cookie/Data Consent Notice are drafted and NDPR-aligned, pending final legal review before launch.
+### Setup
 
-## Contributing
+```bash
+git clone https://github.com/samuelbukumni/themiddleman.git
+cd themiddleman
+corepack enable
+pnpm install --frozen-lockfile
+cp .env.example .env.local
+pnpm dev
+```
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for how to get involved. This is a volunteer-built project — see [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) for how we work together.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Security
+The public pages can render without working Supabase credentials, but account,
+listing, messaging, order, and payment features require valid environment
+variables.
 
-Found a vulnerability? See [SECURITY.md](./SECURITY.md) for how to report it responsibly.
+## Environment variables
+
+Use `.env.example` as the source of truth. Never commit `.env`, `.env.local`,
+service-role keys, Paystack secret keys, or other real credentials.
+
+| Variable | Used for | Exposure |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL | Browser-safe |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous client | Browser-safe; RLS must remain enabled |
+| `SUPABASE_SERVICE_ROLE_KEY` | Trusted server-side Supabase operations | Secret |
+| `NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY` | Paystack checkout | Browser-safe |
+| `PAYSTACK_SECRET_KEY` | Server-side Paystack verification | Secret |
+| `NEXT_PUBLIC_APP_URL` | Canonical application URL | Browser-safe |
+| `NEXT_PUBLIC_SITE_NAME` | Public product name | Browser-safe |
+
+## Quality checks
+
+Run these before opening or merging a pull request:
+
+```bash
+pnpm lint
+pnpm exec tsc --noEmit
+pnpm build
+```
+
+## Database status
+
+The SQL files under `supabase/` currently describe the known schema and
+policies, but they are **not a complete chronological migration history**.
+They must not be applied blindly to an existing production project.
+
+Current SQL areas include:
+
+- Core users, seller profiles, listings, orders, payments, reviews, and disputes
+- Auth-user provisioning trigger
+- Conversations and messages
+- Listing reports
+- Review and rating functions
+- Verification-document storage policies
+
+Before production migration, export the actual live Supabase schema, compare it
+with these files, and create ordered, repeatable migrations. Changes to RLS,
+payments, verification documents, orders, or disputes require explicit review.
+
+## Main routes
+
+| Area | Routes |
+| --- | --- |
+| Discovery | `/`, `/marketplace`, `/browse`, `/gigs/[id]` |
+| Accounts | `/signup`, `/profile` |
+| Seller flow | `/onboarding/role`, `/onboarding/seller`, `/onboarding/pending`, `/gigs/new`, `/gigs/mine` |
+| Transactions | `/orders`, `/payments`, `/api/payments/verify` |
+| Trust | `/messages`, `/disputes`, `/seller-guidelines` |
+| Company and legal | `/about`, `/careers`, `/legal/[document]` |
+
+## Production-readiness priorities
+
+1. Reconcile the repository SQL with the live Supabase project and establish
+   ordered migrations.
+2. Add and verify the administrative seller-review workflow.
+3. Test payment verification, escrow state transitions, refunds, disputes, and
+   webhook behaviour end to end.
+4. Complete authorization and RLS testing for every buyer/seller boundary.
+5. Add automated CI checks and production deployment safeguards.
+6. Optimize remaining large media and complete accessibility/performance QA.
+7. Obtain appropriate legal review before representing policies as final.
+
+## Contributing and security
+
+Read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a pull request and
+[CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) before participating.
+
+Do not disclose vulnerabilities in a public issue. Follow
+[SECURITY.md](./SECURITY.md) for private reporting instructions.
 
 ## License
 
 See [LICENSE](./LICENSE).
-
----
-
-Built by [Samuel](https://themiddleman.com.ng) and a small team of volunteers.

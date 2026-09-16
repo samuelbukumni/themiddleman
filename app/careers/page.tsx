@@ -34,7 +34,6 @@ export default function CareersPage() {
           <p className="mt-4 text-sm leading-relaxed text-slate">When roles open, they will be listed on this page first. Until then, send us a note - what you build, what you&apos;ve shipped, and why this problem interests you.</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a href="mailto:hello@themiddleman.com.ng?subject=Introduction" className="rounded-full bg-ember px-6 py-3 text-sm font-bold text-ink transition-colors hover:bg-ember/90">hello@themiddleman.com.ng</a>
-            <a href="https://wa.me/2347066316607" className="rounded-full border border-line px-6 py-3 text-sm font-semibold text-bone transition-colors hover:border-ember/40">WhatsApp us</a>
           </div>
         </div>
       </div>

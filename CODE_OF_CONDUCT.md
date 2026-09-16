@@ -2,7 +2,7 @@
 
 The Middleman's team is small, mostly volunteer-driven, and built on trust —
 the same value we're building into the marketplace itself. This document
-sets basic expectations for anyone contributing, on GitHub, Discord, or
+sets basic expectations for anyone contributing, on GitHub, team channels, or
 elsewhere in team spaces.
 
 ## Our Standard
@@ -12,7 +12,7 @@ elsewhere in team spaces.
 - Assume good faith. Most misunderstandings are just that.
 - No harassment, discrimination, or personal attacks, in any team space.
 - Respect confidentiality — internal docs, unreleased features, and business
-  details discussed in the team Discord stay within the team unless Samuel
+  details discussed in private team channels stay within the team unless a maintainer
   says otherwise.
 
 ## Unacceptable Behavior
