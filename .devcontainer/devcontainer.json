@@ -1,7 +1,7 @@
 {
   "name": "The Middleman Dev Container",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
-  
+
   "customizations": {
     "vscode": {
       "settings": {
@@ -19,9 +19,9 @@
   "forwardPorts": [3000],
 
   "containerEnv": {
-    "NEXT_PUBLIC_SUPABASE_URL": "${localEnv:https://uwigyojtiudefnwjezhm.supabase.co}",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "${localEnv:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV3aWd5b2p0aXVkZWZud2plemhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxNjY5MjcsImV4cCI6MjA5NDc0MjkyN30.X_GfdlRb-aPMrNPWan--iE3hM-vwev_Zgi1YtXYxihA}"
+    "NEXT_PUBLIC_SUPABASE_URL": "${localEnv:NEXT_PUBLIC_SUPABASE_URL}",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "${localEnv:NEXT_PUBLIC_SUPABASE_ANON_KEY}"
   },
 
-  "postCreateCommand": "npm install"
+  "postCreateCommand": "corepack enable && pnpm install --frozen-lockfile"
 }
