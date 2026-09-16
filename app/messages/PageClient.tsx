@@ -209,7 +209,7 @@ function MessagesPageInner() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [requestedConversationId]);
 
   // Load messages for the active conversation, and subscribe to new ones.
   useEffect(() => {

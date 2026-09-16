@@ -1,7 +1,7 @@
 # Security Policy
 
-The Middleman handles user accounts, listings, in-app messaging, and
-(from Phase 4 onward) payments. We take security and data protection
+The Middleman handles user accounts, listings, in-app messaging, and payment
+integration points. We take security and data protection
 seriously, and we appreciate responsible disclosure from anyone who finds
 an issue.
 
@@ -40,8 +40,10 @@ respective provider.
 
 ## Data Handling
 
-The Middleman is built on an NDPR-compliant foundation. If your report
-involves actual exposure of user data (not just a theoretical vulnerability),
-please flag this explicitly in your email so we can prioritize accordingly.
+The platform is being developed with Nigerian data-protection requirements in
+mind, but compliance must not be assumed from the presence of policies or
+technical controls alone. If your report involves actual exposure of user data
+(not just a theoretical vulnerability), please flag this explicitly in your
+email so we can prioritize accordingly.
 
 Thank you for helping keep The Middleman and its users safe.

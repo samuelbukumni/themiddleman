@@ -5,16 +5,15 @@ changes land cleanly and nobody steps on anyone else's work.
 
 ## Before you start
 
-- Confirm access to the GitHub organization and this repo.
-- Join the team Discord — most coordination happens there, not in GitHub comments.
-- Skim the Project Bible and current Phase priorities before picking up work,
-  so what you build fits the roadmap instead of duplicating or conflicting with it.
+- Read the README, open issues, and active pull requests before starting.
+- Confirm the task and repository with a maintainer when the same work may
+  already be in progress elsewhere.
 
 ## Branching
 
-- `main` is protected — no direct pushes.
-- Branch naming: `phase-<n>/<short-description>`, e.g. `phase-1/auth-rls-policies`
-  or `phase-2/listing-feed-pagination`.
+- Do not push directly to `main`; use a pull request.
+- Use descriptive branch names such as `feat/listing-search`,
+  `fix/payment-verification`, or `docs/setup-guide`.
 - Keep branches scoped to one feature or fix. Large, multi-purpose branches are
   hard to review and hard to revert if something breaks.
 
@@ -48,10 +47,9 @@ changes land cleanly and nobody steps on anyone else's work.
 
 ## Communication
 
-- Discord is the source of truth for "what's being worked on right now."
-- If you're blocked or a task is bigger than expected, say so early —
-  better to flag it on day one than surface it on day five.
-- Questions about product direction or scope go to Samuel directly.
+- GitHub issues and pull requests are the durable record of technical work.
+- If you're blocked or a task is bigger than expected, say so early.
+- Ask a maintainer when product direction or scope is unclear.
 
 ## Reporting Bugs
 
@@ -63,6 +61,6 @@ Security or data-exposure issues: **do not open a public issue** — see
 
 ---
 
-Building something people actually trust with money and goods is the whole
+Building something people actually trust with money and digital work is the whole
 point of The Middleman — so when in doubt on anything touching auth, payments,
 or user data, ask before merging rather than after.

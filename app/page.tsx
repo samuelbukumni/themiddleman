@@ -5,27 +5,24 @@ import FadeIn from "@/components/motion/FadeIn";
 import StaggerChildren from "@/components/motion/StaggerChildren";
 import Logo from "@/components/Logo";
 
-const TESTIMONIALS = [
+const TRUST_SCENARIOS = [
   {
-    quote:
-      "We needed a dashboard rebuilt in three weeks and didn't have a developer on staff. Escrow made it painless to work with someone we'd never met — we only released payment once every screen matched the brief.",
-    name: "Femi Adebayo",
-    role: "Operations Lead · Lagos retail SME",
-    initials: "FA",
+    title: "Buyer protection",
+    body:
+      "Review the agreed delivery before payment is released. If something is wrong, raise a dispute instead of relying on informal promises.",
+    marker: "01",
   },
   {
-    quote:
-      "I've sold digital design assets for six years, mostly on referrals. Verification took a few days, but now buyers message me already trusting that I'm real — that alone has cut my back-and-forth in half.",
-    name: "Ngozi Okafor",
-    role: "Brand & product designer · Enugu",
-    initials: "NO",
+    title: "Seller credibility",
+    body:
+      "Verified seller profiles, clear listings, and transparent order records help legitimate creators earn trust before a transaction begins.",
+    marker: "02",
   },
   {
-    quote:
-      "A copywriter ghosted us halfway through a product launch last year. This time the payment stayed in escrow until we approved the final drafts, so there was no way to be left stranded again.",
-    name: "Tunde Bakare",
-    role: "Marketing lead · Abuja startup",
-    initials: "TB",
+    title: "Accountable transactions",
+    body:
+      "Keep the listing, conversation, payment status, delivery, review, and dispute trail connected to one order.",
+    marker: "03",
   },
 ];
 
@@ -356,27 +353,27 @@ export default function Home() {
         </section>
       </FadeIn>
 
-      {/* TESTIMONIALS */}
+      {/* TRUST SCENARIOS */}
       <section className="border-t border-white/10 bg-[#0f0f0f]">
         <div className="mx-auto max-w-7xl px-6 py-20">
           <p className="mb-3 text-xs font-medium tracking-[0.2em] text-[#f7a57a]">
-            LOVED BY BUYERS AND SELLERS
+            BUILT FOR BOTH SIDES
           </p>
           <h2 className="mb-14 max-w-lg font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Real work, real trust, on both sides.
+            Trust should come from the process.
           </h2>
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
-            {TESTIMONIALS.map((t) => (
-              <div key={t.name} className="flex flex-col rounded-3xl border border-white/10 bg-[#171717] p-7 shadow-[0_18px_50px_rgba(0,0,0,0.3)]">
-                <p className="flex-1 text-sm leading-relaxed text-[#f5f1eb]">&ldquo;{t.quote}&rdquo;</p>
+            {TRUST_SCENARIOS.map((scenario) => (
+              <div key={scenario.title} className="flex flex-col rounded-3xl border border-white/10 bg-[#171717] p-7 shadow-[0_18px_50px_rgba(0,0,0,0.3)]">
+                <p className="flex-1 text-sm leading-relaxed text-[#f5f1eb]">{scenario.body}</p>
                 <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-5">
                   <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-[#f26419]/30 bg-[#f26419]/10 font-display text-xs font-bold text-[#f7a57a]">
-                    {t.initials}
+                    {scenario.marker}
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-white">{t.name}</p>
-                    <p className="text-xs text-[#d4cabd]">{t.role}</p>
+                    <p className="text-sm font-medium text-white">{scenario.title}</p>
+                    <p className="text-xs text-[#d4cabd]">The Middleman trust model</p>
                   </div>
                 </div>
               </div>
@@ -426,14 +423,14 @@ export default function Home() {
               <p className="mb-4 text-base leading-relaxed text-[#625c54]">The trusted layer for Nigeria&apos;s growing digital products economy.</p>
               <ul className="space-y-3 text-base text-[#625c54]">
                 <li>
-                  <a href="/about" className="transition-colors hover:text-[#f26419]">
+                  <Link href="/about" className="transition-colors hover:text-[#f26419]">
                     About The Middleman
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/careers" className="transition-colors hover:text-[#f26419]">
+                  <Link href="/careers" className="transition-colors hover:text-[#f26419]">
                     Careers
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a
@@ -453,9 +450,9 @@ export default function Home() {
               <p className="mb-4 text-base leading-relaxed text-[#625c54]">Find verified digital products and pay only when your order is ready.</p>
               <ul className="space-y-3 text-base text-[#625c54]">
                 <li>
-                  <a href="/marketplace" className="transition-colors hover:text-[#f26419]">
+                  <Link href="/marketplace" className="transition-colors hover:text-[#f26419]">
                     Browse the marketplace
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#trust" className="transition-colors hover:text-[#f26419]">
@@ -463,9 +460,9 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href="/disputes" className="transition-colors hover:text-[#f26419]">
+                  <Link href="/disputes" className="transition-colors hover:text-[#f26419]">
                     Dispute resolution
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -477,19 +474,19 @@ export default function Home() {
               <p className="mb-4 text-base leading-relaxed text-[#625c54]">Turn your code and digital products into trusted, sellable listings.</p>
               <ul className="space-y-3 text-base text-[#625c54]">
                 <li>
-                  <a href="/signup" className="transition-colors hover:text-[#f26419]">
+                  <Link href="/signup" className="transition-colors hover:text-[#f26419]">
                     Become a seller
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/onboarding/seller" className="transition-colors hover:text-[#f26419]">
+                  <Link href="/onboarding/seller" className="transition-colors hover:text-[#f26419]">
                     Verification process
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/seller-guidelines" className="transition-colors hover:text-[#f26419]">
+                  <Link href="/seller-guidelines" className="transition-colors hover:text-[#f26419]">
                     Seller guidelines
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -499,24 +496,24 @@ export default function Home() {
               <p className="mb-4 text-base leading-relaxed text-[#625c54]">Clear policies that protect buyers, sellers, and every transaction.</p>
               <ul className="space-y-3 text-base text-[#625c54]">
                 <li>
-                  <a href="/legal/privacy" className="transition-colors hover:text-[#f26419]">
+                  <Link href="/legal/privacy" className="transition-colors hover:text-[#f26419]">
                     Privacy policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/legal/terms" className="transition-colors hover:text-[#f26419]">
+                  <Link href="/legal/terms" className="transition-colors hover:text-[#f26419]">
                     Terms of service
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/legal/refunds" className="transition-colors hover:text-[#f26419]">
+                  <Link href="/legal/refunds" className="transition-colors hover:text-[#f26419]">
                     Refund &amp; dispute policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/legal/disclaimer" className="transition-colors hover:text-[#f26419]">
+                  <Link href="/legal/disclaimer" className="transition-colors hover:text-[#f26419]">
                     Marketplace disclaimer
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -545,15 +542,9 @@ export default function Home() {
           {/* Bottom bar */}
           <div className="flex flex-col items-center justify-between gap-4 border-t border-line pt-8 text-sm text-[#625c54] sm:flex-row">
             <span>
-              © 2022–2026 The Middleman. Built at OAU, Ile-Ife, Nigeria.
+              © 2022–2026 The Middleman. Built in Nigeria.
             </span>
             <div className="flex gap-6">
-              <a
-                href="https://wa.me/2347066316607"
-                className="transition-colors hover:text-[#f26419]"
-              >
-                WhatsApp support
-              </a>
               <a
                 href="mailto:hello@themiddleman.com.ng"
                 className="transition-colors hover:text-[#f26419]"
