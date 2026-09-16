@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Verified digital products and code, escrow-backed, Nigeria-wide.",
   icons: {
     icon: [
-      { url: "/brand/favicon.svg", type: "image/svg+xml" },
+      { url: "/brand/favicon.png", type: "image/png" },
       { url: "/brand/app-icon.png", type: "image/png" },
     ],
   },

@@ -240,7 +240,7 @@ function AuthPageInner() {
   return (
     <main className="auth-shell-shader">
       <ShaderBackground variant="metaballs" />
-      <div className={`w-full flip-card ${flipped ? 'max-w-[1120px]' : 'max-w-md'}`}>
+      <div className="w-full max-w-[780px] flip-card">
         <div className={`flip-card-inner ${flipped ? 'is-flipped' : ''} ${skipInitialAnim ? 'no-anim' : ''}`}>
 
           {/* FRONT — Sign up */}
@@ -248,7 +248,7 @@ function AuthPageInner() {
             <Logo variant="vertical" className="mx-auto" />
             <p className="mt-8 text-xs font-medium tracking-[.2em] text-ember">GET STARTED</p>
             <h1 className="mt-2 font-display text-3xl font-bold tracking-tight">Create your account</h1>
-            <p className="mt-2 text-sm text-slate">Hire with confidence or start offering your skills.</p>
+            <p className="mt-2 text-sm text-slate">Buy or sell digital products and services with escrow protecting every transaction.</p>
 
             <form onSubmit={handleSignup} className="mt-7 space-y-4">
               <Field icon={<UserIcon />} label="Full name">
@@ -330,14 +330,14 @@ function AuthPageInner() {
               </div>
 
               <div className="auth-visual-copy">
-                <div className="auth-eyebrow">Nigeria's Tech Talent Marketplace</div>
-                <h1>Every job. Every payout. Held to account.</h1>
+                <div className="auth-eyebrow">Nigeria&apos;s Digital Marketplace</div>
+                <h1>Every order. Every payout. Held to account.</h1>
                 <p className="mt-3 text-sm text-[#ece8e0]/80">
-                  A trusted layer connecting Nigerian businesses with skilled digital talent.
+                  Digital products, software, templates, and creative assets protected by escrow.
                 </p>
                 <div className="mt-4 pt-4 border-t border-white/5 flex items-center gap-2 text-xs text-[#6F6A63] font-mono uppercase tracking-wider">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-                  Work managed. Payments tracked. Everyone accountable.
+                  Orders protected. Payments tracked. Everyone accountable.
                 </div>
               </div>
             </div>
@@ -347,7 +347,7 @@ function AuthPageInner() {
                 <div className="auth-form-eyebrow">WELCOME BACK</div>
                 <h2>Log in to The Middleman</h2>
                 <p className="auth-sub">
-                  Manage your work, clients, and payouts in one place.
+                  Manage your products, orders, and payouts in one place.
                 </p>
                 <p className="text-xs text-[#6F6A63] -mt-5 mb-7">
                   New to The Middleman?{' '}

@@ -1562,3 +1562,45 @@ html, body {
   .auth-login-panel { min-height: 100vh; }
   .auth-login-wrap { padding: 0 24px; max-width: 100%; }
 }
+
+/* Auth experience alignment: both faces use the same ink surface, shared
+   card width, typography, and form cadence. The handshake remains the login
+   motif on wider screens without turning sign-up into a separate product. */
+.auth-glass-card {
+  background: #0d0d0d;
+  border-color: rgba(255,255,255,.08);
+  box-shadow: 0 30px 90px rgba(0,0,0,.28);
+}
+.auth-glass-card > * {
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.auth-glass-card .text-slate { color: rgba(245,242,236,.7); }
+.auth-glass-card .field-label { color: rgba(245,242,236,.7); }
+.auth-glass-card .field-input {
+  background: rgba(33,33,36,.96);
+  border-color: rgba(255,255,255,.08);
+  color: var(--bone);
+}
+.auth-glass-card .field-input::placeholder { color: rgba(245,242,236,.45); }
+.auth-glass-card .field-input:focus {
+  background: rgba(33,33,36,.96);
+  border-color: var(--ember);
+  box-shadow: 0 0 0 4px rgba(242,100,25,.16);
+}
+.auth-login-shell {
+  grid-template-columns: .9fr 1fr;
+  min-height: 680px;
+}
+.auth-brand-mark { top: 28px; left: 32px; }
+.auth-visual-copy { left: 32px; right: 32px; bottom: 36px; }
+.auth-handshake-container { height: 230px; margin-top: -30px; max-width: 290px; }
+.auth-login-wrap { max-width: 360px; padding: 0 28px; }
+.auth-login-wrap h2 { font-size: 28px; }
+
+@media (max-width: 768px) {
+  .auth-glass-card { padding: 1.5rem; }
+  .auth-glass-card > * { max-width: none; }
+  .auth-login-shell { min-height: calc(100vh - 2.5rem); }
+}

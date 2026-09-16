@@ -9,7 +9,7 @@ const QUESTIONS: Record<Tab, { q: string; a: string }[]> = {
   General: [
     {
       q: 'What is The Middleman?',
-      a: 'A Nigeria-wide marketplace connecting businesses with verified developers, designers, marketers, and writers. Every order is protected by escrow — payment is held until the buyer approves the delivered work.',
+      a: 'A Nigeria-wide marketplace for verified digital products, software, templates, creative assets, and legitimate digital services. Every order is protected by escrow — payment is held until the buyer approves delivery.',
     },
     {
       q: 'Which currencies can I pay in?',

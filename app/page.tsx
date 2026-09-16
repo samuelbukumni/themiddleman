@@ -15,7 +15,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "I've done freelance design for six years, mostly on referrals. Verification took a few days, but now buyers message me already trusting that I'm real — that alone has cut my back-and-forth in half.",
+      "I've sold digital design assets for six years, mostly on referrals. Verification took a few days, but now buyers message me already trusting that I'm real — that alone has cut my back-and-forth in half.",
     name: "Ngozi Okafor",
     role: "Brand & product designer · Enugu",
     initials: "NO",
@@ -81,7 +81,7 @@ export default function Home() {
         </p>
         {/*
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#d3cabf] sm:text-xl">
-          The Middleman is Nigeria&apos;s trusted marketplace for developers, designers, marketers, and writers —
+          The Middleman is Nigeria&apos;s trusted marketplace for digital products, software, templates, creative assets, and legitimate digital services —
           with every payment held safely in escrow from order to delivery.
         </p>
         */}
