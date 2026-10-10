@@ -734,7 +734,7 @@ body {
   border: none;
   outline: none;
   padding: 13px 16px;
-  color: var(--ink);
+  color: #F7F3EC;
   font-family: var(--font-body), sans-serif;
   font-size: 14px;
 }
@@ -1263,13 +1263,12 @@ html, body {
   background: var(--ember);
   box-shadow: 0 0 0 4px rgba(242,100,25,.18);
 }
-/* ✅ FIXED: was var(--ink), invisible on dark bg */
 .auth-brand-mark span {
   font-family: var(--font-display), sans-serif;
   font-size: 15px;
   font-weight: 700;
   letter-spacing: .02em;
-  color: var(--bone);
+  color: #F7F3EC;
 }
 
 /* === HANDSHAKE IMAGE === */
@@ -1319,14 +1318,13 @@ html, body {
 .auth-visual-copy .auth-eyebrow::before {
   content: ""; width: 16px; height: 1px; background: var(--ember);
 }
-/* ✅ FIXED: was var(--ink) */
 .auth-visual-copy h1 {
   max-width: 520px;
   font-family: var(--font-display), sans-serif;
   font-size: clamp(26px, 2.6vw, 36px);
   line-height: 1.15;
   letter-spacing: -.01em;
-  color: var(--bone);
+  color: #F7F3EC;
 }
 .auth-visual-copy p {
   max-width: 420px; margin-top: 12px;
@@ -1350,12 +1348,11 @@ html, body {
   font-family: var(--font-mono), monospace;
   font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
 }
-/* ✅ FIXED: was var(--ink) */
 .auth-login-wrap h2 {
   margin-bottom: 8px;
   font-family: var(--font-display), sans-serif;
   font-size: 30px; letter-spacing: -.01em;
-  color: var(--bone);
+  color: #F7F3EC;
 }
 .auth-sub {
   margin-bottom: 34px;
@@ -1394,12 +1391,11 @@ html, body {
   border-color: var(--ember);
   box-shadow: 0 0 0 4px rgba(242,100,25,.16);
 }
-/* ✅ FIXED: was var(--ink) */
 .auth-input-shell input {
   width: 100%;
   background: transparent; border: none; outline: none;
   padding: 13px 16px;
-  color: var(--bone);
+  color: #F7F3EC;
   font-family: var(--font-body), sans-serif;
   font-size: 14px;
 }
@@ -1467,14 +1463,13 @@ html, body {
   content: ""; flex: 1; height: 1px; background: rgba(255,255,255,.08);
 }
 .auth-oauth-row { display: flex; gap: 10px; }
-/* ✅ FIXED: was var(--ink) */
 .auth-social-btn {
   width: auto; flex: 1;
   display: flex; align-items: center; justify-content: center; gap: 10px;
   padding: 12px 10px;
   border: 1px solid rgba(255,255,255,.08); border-radius: 10px;
   background: rgba(255,255,255,.01);
-  color: var(--bone);
+  color: #F7F3EC;
   font-size: 13px; font-family: var(--font-body), sans-serif; font-weight: 500;
   cursor: pointer;
   transition: border-color .2s, background .2s, transform .15s;
@@ -1494,9 +1489,8 @@ html, body {
   opacity: 0;
   animation: auth-rise-in .6s cubic-bezier(.16,1,.3,1) .7s forwards;
 }
-/* ✅ FIXED: was var(--ink) */
 .auth-footer-line a {
-  color: var(--bone);
+  color: #F7F3EC;
   font-weight: 600; text-decoration: none;
   border-bottom: 1px solid var(--ember);
 }
@@ -1581,7 +1575,7 @@ html, body {
 .auth-glass-card .field-input {
   background: rgba(33,33,36,.96);
   border-color: rgba(255,255,255,.08);
-  color: var(--bone);
+  color: #F7F3EC;
 }
 .auth-glass-card .field-input::placeholder { color: rgba(245,242,236,.45); }
 .auth-glass-card .field-input:focus {
@@ -1600,7 +1594,29 @@ html, body {
 .auth-login-wrap h2 { font-size: 28px; }
 
 @media (max-width: 768px) {
-  .auth-glass-card { padding: 1.5rem; }
+  .auth-shell-shader {
+    padding: 1rem 0.75rem;
+  }
+  .auth-glass-card {
+    padding: 1.25rem 1rem;
+    border-radius: 1rem;
+  }
   .auth-glass-card > * { max-width: none; }
-  .auth-login-shell { min-height: calc(100vh - 2.5rem); }
+  .auth-login-shell {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    border-radius: 1rem;
+  }
+  .auth-visual-panel { display: none; }
+  .auth-login-panel {
+    padding: 2rem 1.25rem;
+    min-height: auto;
+  }
+  .auth-login-wrap {
+    padding: 0;
+    max-width: 100%;
+  }
+  .auth-login-wrap h2 {
+    font-size: 24px;
+  }
 }
