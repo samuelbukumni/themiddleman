@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
@@ -44,6 +44,7 @@ function initialsFrom(name: string): string {
 
 export default function GigPageClient({ gigId }: { gigId: string }) {
   const router = useRouter();
+  const orderRequestKey = useRef<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [gig, setGig] = useState<GigRow | null>(null);
@@ -60,6 +61,7 @@ export default function GigPageClient({ gigId }: { gigId: string }) {
   const [reportSuccess, setReportSuccess] = useState(false);
 
   useEffect(() => {
+    orderRequestKey.current = null;
     let cancelled = false;
     async function load() {
       setLoading(true); setLoadError("");
@@ -105,22 +107,35 @@ export default function GigPageClient({ gigId }: { gigId: string }) {
   async function handleBuyAndPay() {
     setActionError("");
     if (!userId) { router.push("/signup?mode=signin"); return; }
-    if (!gig || userId === gig.seller_id) return;
+    if (!gig) return;
+    if (userId === gig.seller_profiles?.user_id) { setActionError("You cannot buy your own product."); return; }
     const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY;
     if (!publicKey) { setActionError("Payments aren't configured yet — add NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY to .env.local."); return; }
     setPaying(true);
     try {
-      const { data: order, error: orderError } = await supabase.from("orders").insert({ buyer_id: userId, seller_id: gig.seller_id, gig_id: gig.id, amount: gig.price_ngn, status: "pending" }).select("id").single();
-      if (orderError) throw new Error(orderError.message);
+      orderRequestKey.current ??= crypto.randomUUID();
+      const orderResponse = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Idempotency-Key": orderRequestKey.current },
+        body: JSON.stringify({ gigId: gig.id }),
+      });
+      const orderResult = await orderResponse.json();
+      if (!orderResponse.ok || !orderResult.order?.id) throw new Error(orderResult.error || "Could not create the order.");
+      const order = orderResult.order as { id: string; amount: number; status: string };
+      if (order.status !== "pending_payment") { router.push("/orders"); return; }
       await loadPaystackScript();
       const win = window as PaystackWindow;
       const handler = win.PaystackPop!.setup({
-        key: publicKey, email: userEmail, amount: gig.price_ngn * 100, currency: "NGN", ref: `mm_${order.id}`,
+        key: publicKey, email: userEmail, amount: Number(order.amount) * 100, currency: "NGN", ref: `mm_${order.id}`,
         callback: (response) => {
           fetch("/api/payments/verify", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ reference: response.reference, orderId: order.id }) })
-            .then((res) => res.json()).then((result) => {
+            .then(async (res) => {
+              const result = await res.json();
+              if (!res.ok) throw new Error(result.error || "Payment verification is pending. Check My Orders shortly.");
+              return result;
+            }).then((result) => {
               if (result.error) { setActionError(result.error); setPaying(false); } else router.push("/orders");
-            }).catch(() => { setActionError("Payment succeeded but we couldn't confirm it — check My Orders in a moment."); setPaying(false); });
+            }).catch(() => { setActionError("We couldn't confirm payment yet — check My Orders shortly. Do not pay again."); setPaying(false); });
         },
         onClose: () => setPaying(false),
       });
